@@ -719,8 +719,7 @@ class REGShell(object):
             self.config.npronouns, self.config.beam_size, self.config.min_dec_steps, self.config.max_dec_steps, 
             drop_out=self.config.drop_out).to(device)
 
-        self.optimizer = torch.optim.Adam([{'params': self.regModel.parameters()}, 
-                                           {'params': self.wordEmbed.parameters()}], 
+        self.optimizer = torch.optim.Adam(self.regModel.parameters(), 
                                            lr=self.config.lr)
     
     def save_model(self):
