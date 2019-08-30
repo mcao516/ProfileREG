@@ -717,10 +717,16 @@ class REGShell(object):
         self.regModel = REGModel(self.config.dim_word, self.config.hidden_size_char, self.config.hidden_size, 
             self.config.nwords, self.wordEmbed, self.config.start_id, self.config.stop_id, self.config.unk_id, 
             self.config.npronouns, self.config.beam_size, self.config.min_dec_steps, self.config.max_dec_steps, 
-            drop_out=self.config.drop_out).to(device)
+            drop_out=self.config.drop_out)
 
-        self.optimizer = torch.optim.Adam(self.regModel.parameters(), 
-                                           lr=self.config.lr)
+        if torch.cuda.device_count() > 1:
+            self.logger.info("Let's use", torch.cuda.device_count(), "GPUs!")
+            # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
+            self.regModel = nn.DataParallel(self.regModel)
+
+        self.regModel.to(device)
+
+        self.optimizer = torch.optim.Adam(self.regModel.parameters(), lr=self.config.lr)
     
     def save_model(self):
         """Saves session = weights"""
