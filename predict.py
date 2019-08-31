@@ -33,7 +33,7 @@ def main():
 
     # build model
     model  = REGShell(config)
-    model.restore_model('results/train/20181208_024721/model/checkpoint.pth.tar')
+    model.restore_model('results/train/20190830_204248/model/checkpoint.pth.tar')
 
     # create datasets
     test = REGDataset(config.filename_test, config=config, 
