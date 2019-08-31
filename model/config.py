@@ -78,14 +78,14 @@ class Config():
     use_pretrained = True
 
     # dataset
-    filename_dev = "data/WebNLG/original/WebNLG_dev.pickle"
-    filename_test = "data/WebNLG/original/WebNLG_test.pickle"
-    filename_train = "data/WebNLG/original/WebNLG_train.pickle"
+    # filename_dev = "data/WebNLG/original/WebNLG_dev.pickle"
+    # filename_test = "data/WebNLG/original/WebNLG_test.pickle"
+    # filename_train = "data/WebNLG/original/WebNLG_train.pickle"
     
-    # split_type = 'separated'
-    # filename_dev = "data/WebNLG/re-split-{0}/WebNLG_{0}_dev.pickle".format(split_type)
-    # filename_test = "data/WebNLG/re-split-{0}/WebNLG_{0}_test.pickle".format(split_type)
-    # filename_train = "data/WebNLG/re-split-{0}/WebNLG_{0}_train.pickle".format(split_type)
+    split_type = 'half'
+    filename_dev = "data/WebNLG/re-split-{0}/WebNLG_{0}_dev.pickle".format(split_type)
+    filename_test = "data/WebNLG/re-split-{0}/WebNLG_{0}_test.pickle".format(split_type)
+    filename_train = "data/WebNLG/re-split-{0}/WebNLG_{0}_train.pickle".format(split_type)
     filename_sample = "data/WebNLG/samples.pickle"
 
     max_iter = None # if not None, max number of examples in Dataset
