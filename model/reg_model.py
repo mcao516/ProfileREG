@@ -220,7 +220,7 @@ class BidirectionalEncoder(nn.Module):
     def forward(self, input_word_ids, input_seq_lens, input_seq_mask, 
                 input_char_ids, input_word_lens):
         """Encode description, return outputs and the last hidden state
-           
+        
         Args:
             input_word_ids: [batch_size, max_seq_len]
             input_seq_lens: [batch_size]
@@ -720,12 +720,13 @@ class REGShell(object):
             drop_out=self.config.drop_out)
 
         if torch.cuda.device_count() > 1:
-            self.logger.info("Let's use", torch.cuda.device_count(), "GPUs!")
+            self.logger.info("Let's use {} GPUs!".format(torch.cuda.device_count()))
             # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
             self.regModel = nn.DataParallel(self.regModel)
-
+        else:
+            self.logger.info("Traing model on a single GPU.")
+        
         self.regModel.to(device)
-
         self.optimizer = torch.optim.Adam(self.regModel.parameters(), lr=self.config.lr)
     
     def save_model(self):
