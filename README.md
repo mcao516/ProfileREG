@@ -3,7 +3,6 @@
 This is the official repository for Referring Expression Generation Using Entity Profiles.
 
 # Citation
-========
 If you find this useful in your research, please consider citing:
 ```
 @inproceedings{cao-cheung-2019-referring,
